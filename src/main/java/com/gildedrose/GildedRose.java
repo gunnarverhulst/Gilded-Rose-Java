@@ -16,27 +16,32 @@ class GildedRose {
             if (itemType != ItemType.SULFURAS)
                 item.sellIn--;
 
-            int addedQuality = 0;
-            if(itemType == ItemType.AGED_BRIE )
-                addedQuality = isSellInLessThenMin(item.sellIn) ? 2 : 1;
-            else if (itemType == ItemType.BACKSTAGE_PASS)
-                addedQuality = calculateAddedQualityBackstagePass(item);
-            else if (itemType == ItemType.CONJURED_ITEM)
-                addedQuality = isSellInLessThenMin(item.sellIn) ? -4 : -2;
-            else if (itemType != ItemType.SULFURAS)
-                addedQuality = isSellInLessThenMin(item.sellIn) ? -2 : -1;
+            int qualityChangeForToday = calculateQualityChangeForToday(item, itemType);
 
             if(itemType != ItemType.SULFURAS)
-                item.quality = Math.min(Math.max(item.quality + addedQuality, MIN_QUALITY_VALUE), MAX_QUALITY_VALUE);
+                item.quality = Math.min(Math.max(item.quality + qualityChangeForToday, MIN_QUALITY_VALUE), MAX_QUALITY_VALUE);
         }
     }
 
-    private static boolean isSellInLessThenMin(int itemSellInvValue) {
+    private int calculateQualityChangeForToday(Item item, ItemType itemType) {
+        int qualityChangeForToday = 0;
+        if(itemType == ItemType.AGED_BRIE )
+            qualityChangeForToday = isSellInLessThanZero(item.sellIn) ? 2 : 1;
+        else if (itemType == ItemType.BACKSTAGE_PASS)
+            qualityChangeForToday = calculateQualityChangeTodayForBackstagePass(item);
+        else if (itemType == ItemType.CONJURED_ITEM)
+            qualityChangeForToday = isSellInLessThanZero(item.sellIn) ? -4 : -2;
+        else if (itemType != ItemType.SULFURAS)
+            qualityChangeForToday = isSellInLessThanZero(item.sellIn) ? -2 : -1;
+        return qualityChangeForToday;
+    }
+
+    private static boolean isSellInLessThanZero(int itemSellInvValue) {
         return itemSellInvValue < MIN_SELLIN_VALUE;
     }
 
-    private int calculateAddedQualityBackstagePass(Item item) {
-        if (isSellInLessThenMin(item.sellIn))
+    private int calculateQualityChangeTodayForBackstagePass(Item item) {
+        if (isSellInLessThanZero(item.sellIn))
             return -item.quality;
         else if (item.sellIn < 6)
             return 3;
