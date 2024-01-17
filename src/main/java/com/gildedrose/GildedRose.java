@@ -36,10 +36,9 @@ class GildedRose {
     }
 
     private int calculateAddedQualityBackstagePass(Item item) {
-        if (isSellInLessThenMin(item.sellIn)){
-            item.quality = 0;
-            return 0;
-        }else if (item.sellIn < 6)
+        if (isSellInLessThenMin(item.sellIn))
+            return -item.quality;
+        else if (item.sellIn < 6)
             return 3;
         else if (item.sellIn < 11)
             return 2;
