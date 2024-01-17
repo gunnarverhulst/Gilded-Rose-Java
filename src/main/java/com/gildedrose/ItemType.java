@@ -46,8 +46,8 @@ public enum ItemType {
             return 3;
         else if (item.sellIn < 11)
             return 2;
-
-        return 1;
+        else
+            return 1;
     }
 
 }
