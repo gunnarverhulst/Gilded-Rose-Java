@@ -1,24 +1,36 @@
 package com.gildedrose;
 
+import java.util.ArrayList;
+import java.util.List;
+
 class GildedRose {
     private static final int MAX_QUALITY_VALUE = 50;
     private static final int MIN_QUALITY_VALUE = 0;
     private static final int MIN_SELLIN_VALUE = 0;
-    private final Item[] items;
+//    private final Item[] items;
+    private final List<Item> itemList;
 
     public GildedRose(Item[] items) {
-        this.items = items;
+        itemList = new ArrayList<>();
+//        this.items = items;
+        itemList.addAll(List.of(items));
     }
 
     public void updateQuality() {
-        for (Item item : items) {
-            handleItem(item);
-        }
+//        for (Item item : items) {
+//            handleItem(item);
+//        }
+
+        itemList.forEach(this::handleItem);
+
     }
 
 
+//    public Item getItem(int itemIndex) {
+//        return items[itemIndex];
+//    }
     public Item getItem(int itemIndex) {
-        return items[itemIndex];
+        return itemList.get(itemIndex);
     }
 
     private void handleItem(Item item) {
