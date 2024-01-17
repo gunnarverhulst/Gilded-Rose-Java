@@ -194,4 +194,71 @@ class GildedRoseTest {
         assertEquals(2, app.getItemSellIn(0));
         assertEquals(4, app.getItemQuality(0));
     }
+
+    @Test
+    void whenConjuredItemQualityIsTooBig(){
+        Item[] items = new Item[] { new Item("Conjured Mana Gem", 3, 51) };
+        app = new GildedRose(items);
+        app.updateQuality();
+
+        assertEquals("Conjured Mana Gem", app.getItemName(0));
+        assertEquals(2, app.getItemSellIn(0));
+        assertEquals(48, app.getItemQuality(0));
+    }
+
+    @Test
+    void whenRegularItemQualityIsTooBig(){
+        Item[] items = new Item[] { new Item("Elixir of the Mongoose", 3, 51) };
+        app = new GildedRose(items);
+        app.updateQuality();
+
+        assertEquals("Elixir of the Mongoose", app.getItemName(0));
+        assertEquals(2, app.getItemSellIn(0));
+        assertEquals(49, app.getItemQuality(0));
+    }
+
+    @Test
+    void whenAgedBrieQualityIsTooBig(){
+        Item[] items = new Item[] { new Item("Aged Brie", 3, 51) };
+        app = new GildedRose(items);
+        app.updateQuality();
+
+        assertEquals("Aged Brie", app.getItemName(0));
+        assertEquals(2, app.getItemSellIn(0));
+        assertEquals(50, app.getItemQuality(0));
+    }
+
+    @Test
+    void whenConjuredItemQualityIsNegative(){
+        Item[] items = new Item[] { new Item("Conjured Mana Gem", 5, -1) };
+        app = new GildedRose(items);
+        app.updateQuality();
+
+        assertEquals("Conjured Mana Gem", app.getItemName(0));
+        assertEquals(4, app.getItemSellIn(0));
+        assertEquals(0, app.getItemQuality(0));
+    }
+
+    @Test
+    void whenRegularItemQualityIsNegative(){
+        Item[] items = new Item[] { new Item("Elixir of the Mongoose", 3, -1) };
+        app = new GildedRose(items);
+        app.updateQuality();
+
+        assertEquals("Elixir of the Mongoose", app.getItemName(0));
+        assertEquals(2, app.getItemSellIn(0));
+        assertEquals(0, app.getItemQuality(0));
+    }
+
+    @Test
+    void whenAgedBrieQualityNegative(){
+        Item[] items = new Item[] { new Item("Aged Brie", 3, -1) };
+        app = new GildedRose(items);
+        app.updateQuality();
+
+        assertEquals("Aged Brie", app.getItemName(0));
+        assertEquals(2, app.getItemSellIn(0));
+        assertEquals(1, app.getItemQuality(0));
+    }
+
 }
