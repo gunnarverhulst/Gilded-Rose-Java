@@ -36,7 +36,7 @@ class GildedRose {
                 addedQuality = isSellInLessThenMin(item.sellIn) ? -2 : -1;
             }
 
-            if(!item.name.equals("Sulfuras, Hand of Ragnaros")){
+            if(itemType != ItemType.SULFURAS){
                 item.quality = Math.min(Math.max(item.quality + addedQuality, MIN_QUALITY_VALUE), MAX_QUALITY_VALUE);
             }
 
