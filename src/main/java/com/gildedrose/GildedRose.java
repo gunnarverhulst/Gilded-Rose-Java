@@ -29,11 +29,7 @@ class GildedRose {
                     addedQuality = 2;
                 }
 
-                if(isQualityLessThanMax(item.quality + addedQuality)){
-                    item.quality += addedQuality;
-                } else {
-                    item.quality = 50;
-                }
+                item.quality = Math.min(item.quality + addedQuality, MAX_QUALITY_VALUE);
 
             } else if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
                 if (isQualityMoreThanMin(item.quality)) {
