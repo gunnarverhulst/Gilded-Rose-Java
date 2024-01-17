@@ -103,4 +103,14 @@ class GildedRoseTest {
         assertEquals(0, app.items[1].sellIn);
         assertEquals(13, app.items[1].quality);
     }
+
+    @Test
+    void agedBrieOneRunAtSellInBoundary() {
+        Item[] items = new Item[] { new Item("Aged Brie", 0, 5) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals("Aged Brie", app.items[0].name);
+        assertEquals(-1, app.items[0].sellIn);
+        assertEquals(7, app.items[0].quality);
+    }
 }
