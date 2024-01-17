@@ -12,19 +12,24 @@ class GildedRose {
 
     public void updateQuality() {
         for (Item item : items) {
-            ItemType itemType = ItemType.convertToItemType(item.name);
-            if (itemType != ItemType.SULFURAS)
-                item.sellIn--;
-
-            int qualityChangeForToday = calculateQualityChangeForToday(item, itemType);
-
-            if(itemType != ItemType.SULFURAS)
-                item.quality = applyQualityChangeForToday(item, qualityChangeForToday);
+            handleItem(item);
         }
     }
 
+
     public Item getItem(int itemIndex) {
         return items[itemIndex];
+    }
+
+    private void handleItem(Item item) {
+        ItemType itemType = ItemType.convertToItemType(item.name);
+        if (itemType != ItemType.SULFURAS)
+            item.sellIn--;
+
+        int qualityChangeForToday = calculateQualityChangeForToday(item, itemType);
+
+        if(itemType != ItemType.SULFURAS)
+            item.quality = applyQualityChangeForToday(item, qualityChangeForToday);
     }
 
     private int calculateQualityChangeForToday(Item item, ItemType itemType) {
