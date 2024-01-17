@@ -5,6 +5,7 @@ class GildedRose {
     public static final int MIN_QUALITY_VALUE = 0;
     public static final int MIN_SELLIN_VALUE = 0;
     Item[] items;
+    private int addedQuality;
 
     public GildedRose(Item[] items) {
         this.items = items;
@@ -17,12 +18,13 @@ class GildedRose {
             }
 
             if(item.name.equals("Aged Brie") ) {
-                item.quality = Math.min(++item.quality, MAX_QUALITY_VALUE);
+                addedQuality++;
                 if (isSellInLessThenMin(item.sellIn)) {
-                    item.quality = Math.min(++item.quality, MAX_QUALITY_VALUE);
+                    addedQuality++;
                 }
+                item.quality = Math.min(item.quality + addedQuality, MAX_QUALITY_VALUE);
             } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                int addedQuality = 1;
+                addedQuality = 1;
 
                 if(isSellInLessThenMin(item.sellIn)){
                     addedQuality = 0;
