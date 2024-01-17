@@ -27,10 +27,6 @@ class GildedRose {
         return items[itemIndex];
     }
 
-    private static int applyQualityChangeForToday(Item item, int qualityChangeForToday) {
-        return Math.min(Math.max(item.quality + qualityChangeForToday, MIN_QUALITY_VALUE), MAX_QUALITY_VALUE);
-    }
-
     private int calculateQualityChangeForToday(Item item, ItemType itemType) {
         int qualityChangeForToday = 0;
         if(itemType == ItemType.AGED_BRIE )
@@ -59,5 +55,7 @@ class GildedRose {
         return 1;
     }
 
-
+    private static int applyQualityChangeForToday(Item item, int qualityChangeForToday) {
+        return Math.min(Math.max(item.quality + qualityChangeForToday, MIN_QUALITY_VALUE), MAX_QUALITY_VALUE);
+    }
 }
