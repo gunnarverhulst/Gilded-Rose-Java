@@ -20,17 +20,8 @@ class GildedRose {
             if(itemType == ItemType.AGED_BRIE )
                 addedQuality = isSellInLessThenMin(item.sellIn) ? 2 : 1;
             else if (itemType == ItemType.BACKSTAGE_PASS)
-
-                if(isSellInLessThenMin(item.sellIn))
-                    item.quality = 0;
-                else if (item.sellIn < 6)
-                    addedQuality = 3;
-                else if (item.sellIn < 11)
-                    addedQuality = 2;
-                else
-                    addedQuality = 1;
-
-             else if (itemType == ItemType.CONJURED_ITEM)
+                addedQuality = calculateAddedQualityBackstagePass(item);
+            else if (itemType == ItemType.CONJURED_ITEM)
                 addedQuality = isSellInLessThenMin(item.sellIn) ? -4 : -2;
             else if (itemType != ItemType.SULFURAS)
                 addedQuality = isSellInLessThenMin(item.sellIn) ? -2 : -1;
@@ -42,6 +33,18 @@ class GildedRose {
 
     private static boolean isSellInLessThenMin(int itemSellInvValue) {
         return itemSellInvValue < MIN_SELLIN_VALUE;
+    }
+
+    private int calculateAddedQualityBackstagePass(Item item) {
+        if (isSellInLessThenMin(item.sellIn)){
+            item.quality = 0;
+            return 0;
+        }else if (item.sellIn < 6)
+            return 3;
+        else if (item.sellIn < 11)
+            return 2;
+
+        return 1;
     }
 
 }
