@@ -37,7 +37,7 @@ class GildedRose {
                 if (item.name.equals("Aged Brie")) {
                     item.quality = Math.min(++item.quality, MAX_QUALITY_VALUE);
                 } else if(item.name.equals("Backstage passes to a TAFKAL80ETC concert")){
-                    item.quality = item.quality - item.quality;
+                    item.quality = 0;
                 } else if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
                     item.quality = Math.max(--item.quality, MIN_QUALITY_VALUE);
                 }
