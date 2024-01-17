@@ -5,7 +5,7 @@ class GildedRose {
     public static final int MIN_QUALITY_VALUE = 0;
     public static final int MIN_SELLIN_VALUE = 0;
     Item[] items;
-    private int addedQuality;
+    private int addedQuality = 0;
 
     public GildedRose(Item[] items) {
         this.items = items;
@@ -24,7 +24,7 @@ class GildedRose {
                 }
                 item.quality = Math.min(item.quality + addedQuality, MAX_QUALITY_VALUE);
             } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                addedQuality = 1;
+                addedQuality++;
 
                 if(isSellInLessThenMin(item.sellIn)){
                     addedQuality = 0;
@@ -36,14 +36,13 @@ class GildedRose {
                 }
                 item.quality = Math.min(item.quality + addedQuality, MAX_QUALITY_VALUE);
 
-
             } else if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
-                item.quality = Math.max(--item.quality, MIN_QUALITY_VALUE);
+                addedQuality--;
                 if (isSellInLessThenMin(item.sellIn)) {
-                    item.quality = Math.max(--item.quality, MIN_QUALITY_VALUE);
+                    addedQuality--;
                 }
+                item.quality = Math.max(item.quality + addedQuality, MIN_QUALITY_VALUE);
             }
-
         }
     }
 
