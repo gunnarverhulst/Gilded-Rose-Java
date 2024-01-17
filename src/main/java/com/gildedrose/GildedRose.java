@@ -21,20 +21,18 @@ class GildedRose {
                     item.quality++;
                 }
             } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                if (isQualityLessThanMax(item.quality)) {
-                    item.quality++;
-                }
+                int addedQuality = 1;
 
                 if (item.sellIn < 6) {
-                    if (isQualityLessThanMax(item.quality)) {
-                        item.quality++;
-                    }
+                    addedQuality = 3;
+                } else if (item.sellIn < 11) {
+                    addedQuality = 2;
                 }
 
-                if (item.sellIn < 11) {
-                    if (isQualityLessThanMax(item.quality)) {
-                        item.quality++;
-                    }
+                if(isQualityLessThanMax(item.quality + addedQuality)){
+                    item.quality += addedQuality;
+                } else {
+                    item.quality = 50;
                 }
 
             } else if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
