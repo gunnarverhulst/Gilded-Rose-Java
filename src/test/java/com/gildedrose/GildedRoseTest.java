@@ -163,12 +163,34 @@ class GildedRoseTest {
     }
 
     @Test
-    void conjuredManaCakeOnRun(){
+    void conjuredManaCakeOneRun(){
         Item[] items = new Item[] { new Item("Conjured Mana Cake", 3, 6) };
         app = new GildedRose(items);
         app.updateQuality();
 
         assertEquals("Conjured Mana Cake", app.items[0].name);
+        assertEquals(2, app.items[0].sellIn);
+        assertEquals(4, app.items[0].quality);
+    }
+
+    @Test
+    void dexterityVestOneRun(){
+        Item[] items = new Item[] { new Item("+5 Dexterity Vest", 10, 20)};
+        app = new GildedRose(items);
+        app.updateQuality();
+
+        assertEquals("+5 Dexterity Vest", app.items[0].name);
+        assertEquals(9, app.items[0].sellIn);
+        assertEquals(19, app.items[0].quality);
+    }
+
+    @Test
+    void conjuredManaGemOneRun(){
+        Item[] items = new Item[] { new Item("Conjured Mana Gem", 3, 6) };
+        app = new GildedRose(items);
+        app.updateQuality();
+
+        assertEquals("Conjured Mana Gem", app.items[0].name);
         assertEquals(2, app.items[0].sellIn);
         assertEquals(4, app.items[0].quality);
     }
