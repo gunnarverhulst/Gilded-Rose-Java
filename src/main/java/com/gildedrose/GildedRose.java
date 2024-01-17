@@ -19,19 +19,18 @@ class GildedRose {
             int addedQuality = 0;
             if(itemType == ItemType.AGED_BRIE )
                 addedQuality = isSellInLessThenMin(item.sellIn) ? 2 : 1;
-            else if (itemType == ItemType.BACKSTAGE_PASS) {
+            else if (itemType == ItemType.BACKSTAGE_PASS)
 
-                if(isSellInLessThenMin(item.sellIn)){
+                if(isSellInLessThenMin(item.sellIn))
                     item.quality = 0;
-                } else if (item.sellIn < 6) {
+                else if (item.sellIn < 6)
                     addedQuality = 3;
-                } else if (item.sellIn < 11) {
+                else if (item.sellIn < 11)
                     addedQuality = 2;
-                } else
+                else
                     addedQuality = 1;
 
-
-            } else if (itemType == ItemType.CONJURED_ITEM)
+             else if (itemType == ItemType.CONJURED_ITEM)
                 addedQuality = isSellInLessThenMin(item.sellIn) ? -4 : -2;
             else if (itemType != ItemType.SULFURAS)
                 addedQuality = isSellInLessThenMin(item.sellIn) ? -2 : -1;
