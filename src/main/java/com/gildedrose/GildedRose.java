@@ -3,6 +3,7 @@ package com.gildedrose;
 class GildedRose {
     public static final int MAX_QUALITY_VALUE = 50;
     public static final int MIN_QUALITY_VALUE = 0;
+    public static final int MIN_SELLIN_VALUE = 0;
     Item[] items;
 
     public GildedRose(Item[] items) {
@@ -41,7 +42,7 @@ class GildedRose {
                 }
             }
 
-            if (isSellInLessThenMin(item)) {
+            if (isSellInLessThenMin(item.sellIn)) {
                 if (item.name.equals("Aged Brie")) {
                     if (isQualityLessThanMax(item.quality)) {
                         item.quality++;
@@ -57,8 +58,8 @@ class GildedRose {
         }
     }
 
-    private static boolean isSellInLessThenMin(Item item) {
-        return item.sellIn < 0;
+    private static boolean isSellInLessThenMin(int itemSellInvValue) {
+        return itemSellInvValue < MIN_SELLIN_VALUE;
     }
 
     private static boolean isQualityMoreThanMin(int itemQualityValue) {
