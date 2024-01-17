@@ -70,7 +70,7 @@ class GildedRoseTest {
     }
 
     @Test
-    void regularItemAtQualityBoundary(){
+    void regularItemAtSellInBoundary(){
         Item[] items = new Item[] { new Item("Elixir of the Mongoose", 0, 7) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
@@ -79,7 +79,7 @@ class GildedRoseTest {
         assertEquals(5, app.items[0].quality);
     }
     @Test
-    void regularItemBeyondQualityBoundary(){
+    void regularItemBeyondSellInBoundary(){
         Item[] items = new Item[] { new Item("Elixir of the Mongoose", -1, 7) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
@@ -88,4 +88,19 @@ class GildedRoseTest {
         assertEquals(5, app.items[0].quality);
     }
 
+    @Test
+    void concertOneRunAtSellInBoundary(){
+
+        Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 0, 10),
+                new Item("Backstage passes to a TAFKAL80ETC concert", 1, 10)};
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+
+        assertEquals("Backstage passes to a TAFKAL80ETC concert", app.items[0].name);
+        assertEquals(-1, app.items[0].sellIn);
+        assertEquals(0, app.items[0].quality);
+        assertEquals("Backstage passes to a TAFKAL80ETC concert", app.items[1].name);
+        assertEquals(0, app.items[1].sellIn);
+        assertEquals(13, app.items[1].quality);
+    }
 }
