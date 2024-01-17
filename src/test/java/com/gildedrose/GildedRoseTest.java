@@ -113,4 +113,17 @@ class GildedRoseTest {
         assertEquals(-1, app.items[0].sellIn);
         assertEquals(7, app.items[0].quality);
     }
+
+    @Test
+    void agedBrieOneRunAtQualityBoundary() {
+        Item[] items = new Item[] { new Item("Aged Brie", 5, 49),new Item("Aged Brie", 5, 50) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals("Aged Brie", app.items[0].name);
+        assertEquals(4, app.items[0].sellIn);
+        assertEquals(50, app.items[0].quality);
+        assertEquals("Aged Brie", app.items[1].name);
+        assertEquals(4, app.items[1].sellIn);
+        assertEquals(50, app.items[1].quality);
+    }
 }
