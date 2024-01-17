@@ -1,10 +1,10 @@
 package com.gildedrose;
 
 class GildedRose {
-    public static final int MAX_QUALITY_VALUE = 50;
-    public static final int MIN_QUALITY_VALUE = 0;
-    public static final int MIN_SELLIN_VALUE = 0;
-    Item[] items;
+    private static final int MAX_QUALITY_VALUE = 50;
+    private static final int MIN_QUALITY_VALUE = 0;
+    private static final int MIN_SELLIN_VALUE = 0;
+    private final Item[] items;
 
     public GildedRose(Item[] items) {
         this.items = items;
@@ -19,8 +19,16 @@ class GildedRose {
             int qualityChangeForToday = calculateQualityChangeForToday(item, itemType);
 
             if(itemType != ItemType.SULFURAS)
-                item.quality = Math.min(Math.max(item.quality + qualityChangeForToday, MIN_QUALITY_VALUE), MAX_QUALITY_VALUE);
+                item.quality = applyQualityChangeForToday(item, qualityChangeForToday);
         }
+    }
+
+    public Item getItem(int itemIndex) {
+        return items[itemIndex];
+    }
+
+    private static int applyQualityChangeForToday(Item item, int qualityChangeForToday) {
+        return Math.min(Math.max(item.quality + qualityChangeForToday, MIN_QUALITY_VALUE), MAX_QUALITY_VALUE);
     }
 
     private int calculateQualityChangeForToday(Item item, ItemType itemType) {
@@ -50,5 +58,6 @@ class GildedRose {
 
         return 1;
     }
+
 
 }
