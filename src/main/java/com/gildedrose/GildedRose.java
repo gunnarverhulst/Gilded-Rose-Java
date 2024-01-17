@@ -13,14 +13,13 @@ class GildedRose {
     public void updateQuality() {
         for (Item item : items) {
             ItemType itemType = ItemType.convertToItemType(item.name);
-            if (itemType != ItemType.SULFURAS) {
+            if (itemType != ItemType.SULFURAS)
                 item.sellIn--;
-            }
 
             int addedQuality = 0;
-            if(itemType == ItemType.AGED_BRIE ) {
+            if(itemType == ItemType.AGED_BRIE )
                 addedQuality = isSellInLessThenMin(item.sellIn) ? 2 : 1;
-            } else if (itemType == ItemType.BACKSTAGE_PASS) {
+            else if (itemType == ItemType.BACKSTAGE_PASS) {
                 addedQuality = 1;
 
                 if(isSellInLessThenMin(item.sellIn)){
@@ -32,15 +31,13 @@ class GildedRose {
                     addedQuality = 2;
                 }
 
-            } else if (itemType == ItemType.CONJURED_ITEM) {
+            } else if (itemType == ItemType.CONJURED_ITEM)
                 addedQuality = isSellInLessThenMin(item.sellIn) ? -4 : -2;
-            } else if (itemType != ItemType.SULFURAS) {
+            else if (itemType != ItemType.SULFURAS)
                 addedQuality = isSellInLessThenMin(item.sellIn) ? -2 : -1;
-            }
 
-            if(itemType != ItemType.SULFURAS){
+            if(itemType != ItemType.SULFURAS)
                 item.quality = Math.min(Math.max(item.quality + addedQuality, MIN_QUALITY_VALUE), MAX_QUALITY_VALUE);
-            }
         }
     }
 
