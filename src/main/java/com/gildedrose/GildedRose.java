@@ -17,9 +17,6 @@ class GildedRose {
             }
 
             if(item.name.equals("Aged Brie") ) {
-//                if (isQualityLessThanMax(item.quality)) {
-//                    item.quality++;
-//                }
                 item.quality = Math.min(item.quality + 1, MAX_QUALITY_VALUE);
             } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
                 int addedQuality = 1;
@@ -33,9 +30,7 @@ class GildedRose {
                 item.quality = Math.min(item.quality + addedQuality, MAX_QUALITY_VALUE);
 
             } else if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
-                if (isQualityMoreThanMin(item.quality)) {
-                    item.quality--;
-                }
+                item.quality = Math.max(item.quality - 1, MIN_QUALITY_VALUE);
             }
 
             if (isSellInLessThenMin(item.sellIn)) {
@@ -44,9 +39,7 @@ class GildedRose {
                 } else if(item.name.equals("Backstage passes to a TAFKAL80ETC concert")){
                     item.quality = item.quality - item.quality;
                 } else if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
-                    if (isQualityMoreThanMin(item.quality)) {
-                        item.quality--;
-                    }
+                    item.quality = Math.max(item.quality - 1, MIN_QUALITY_VALUE);
                 }
             }
         }
@@ -54,10 +47,6 @@ class GildedRose {
 
     private static boolean isSellInLessThenMin(int itemSellInvValue) {
         return itemSellInvValue < MIN_SELLIN_VALUE;
-    }
-
-    private static boolean isQualityMoreThanMin(int itemQualityValue) {
-        return itemQualityValue > MIN_QUALITY_VALUE;
     }
 
 }
