@@ -12,14 +12,15 @@ class GildedRose {
 
     public void updateQuality() {
         for (Item item : items) {
-            if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
+            ItemType itemType = ItemType.convertToItemType(item.name);
+            if (itemType != ItemType.SULFURAS) {
                 item.sellIn--;
             }
 
             int addedQuality = 0;
-            if(item.name.equals("Aged Brie") ) {
+            if(itemType == ItemType.AGED_BRIE ) {
                 addedQuality = isSellInLessThenMin(item.sellIn) ? 2 : 1;
-            } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+            } else if (itemType == ItemType.BACKSTAGE_PASS) {
                 addedQuality = 1;
 
                 if(isSellInLessThenMin(item.sellIn)){
@@ -31,9 +32,10 @@ class GildedRose {
                     addedQuality = 2;
                 }
 
-            } else if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
+            } else if (itemType != ItemType.SULFURAS) {
                 addedQuality = isSellInLessThenMin(item.sellIn) ? -2 : -1;
             }
+
             if(!item.name.equals("Sulfuras, Hand of Ragnaros")){
                 item.quality = Math.min(Math.max(item.quality + addedQuality, MIN_QUALITY_VALUE), MAX_QUALITY_VALUE);
             }
