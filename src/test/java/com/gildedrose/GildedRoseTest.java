@@ -161,4 +161,15 @@ class GildedRoseTest {
         assertEquals(50, app.items[5].quality);
         
     }
+
+    @Test
+    void conjuredManaCakeOnRun(){
+        Item[] items = new Item[] { new Item("Conjured Mana Cake", 3, 6) };
+        app = new GildedRose(items);
+        app.updateQuality();
+
+        assertEquals("Conjured Mana Cake", app.items[0].name);
+        assertEquals(2, app.items[0].sellIn);
+        assertEquals(4, app.items[0].quality);
+    }
 }

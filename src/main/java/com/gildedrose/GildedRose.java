@@ -32,6 +32,8 @@ class GildedRose {
                     addedQuality = 2;
                 }
 
+            } else if (itemType == ItemType.CONJURED_ITEM) {
+                addedQuality = isSellInLessThenMin(item.sellIn) ? -4 : -2;
             } else if (itemType != ItemType.SULFURAS) {
                 addedQuality = isSellInLessThenMin(item.sellIn) ? -2 : -1;
             }
@@ -39,7 +41,6 @@ class GildedRose {
             if(itemType != ItemType.SULFURAS){
                 item.quality = Math.min(Math.max(item.quality + addedQuality, MIN_QUALITY_VALUE), MAX_QUALITY_VALUE);
             }
-
         }
     }
 
