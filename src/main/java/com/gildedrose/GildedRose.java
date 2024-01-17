@@ -5,7 +5,6 @@ class GildedRose {
     public static final int MIN_QUALITY_VALUE = 0;
     public static final int MIN_SELLIN_VALUE = 0;
     Item[] items;
-    private int addedQuality = 0;
 
     public GildedRose(Item[] items) {
         this.items = items;
@@ -17,6 +16,7 @@ class GildedRose {
                 item.sellIn--;
             }
 
+            int addedQuality = 0;
             if(item.name.equals("Aged Brie") ) {
                 addedQuality = 1;
                 if (isSellInLessThenMin(item.sellIn)) {
