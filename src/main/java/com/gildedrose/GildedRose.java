@@ -20,7 +20,6 @@ class GildedRose {
             if(itemType == ItemType.AGED_BRIE )
                 addedQuality = isSellInLessThenMin(item.sellIn) ? 2 : 1;
             else if (itemType == ItemType.BACKSTAGE_PASS) {
-                addedQuality = 1;
 
                 if(isSellInLessThenMin(item.sellIn)){
                     addedQuality = 0;
@@ -29,7 +28,9 @@ class GildedRose {
                     addedQuality = 3;
                 } else if (item.sellIn < 11) {
                     addedQuality = 2;
-                }
+                } else
+                    addedQuality = 1;
+
 
             } else if (itemType == ItemType.CONJURED_ITEM)
                 addedQuality = isSellInLessThenMin(item.sellIn) ? -4 : -2;
