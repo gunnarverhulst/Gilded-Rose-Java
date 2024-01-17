@@ -15,7 +15,7 @@ class GildedRoseTest {
     }
 
     @Test
-    void elixirMongooseOneRun() {
+    void elixirOfMongooseOneRun() {
         Item[] items = new Item[] { new Item("Elixir of the Mongoose", 5, 7) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
@@ -37,6 +37,16 @@ class GildedRoseTest {
         assertEquals("Sulfuras, Hand of Ragnaros", app.items[1].name);
         assertEquals(-1, app.items[1].sellIn);
         assertEquals(80, app.items[1].quality);
+    }
+
+    @Test
+    void agedBrieOneRun() {
+        Item[] items = new Item[] { new Item("Aged Brie", 3, 0) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals("Aged Brie", app.items[0].name);
+        assertEquals(2, app.items[0].sellIn);
+        assertEquals(1, app.items[0].quality);
     }
 
 }
