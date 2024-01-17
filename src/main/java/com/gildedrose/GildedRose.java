@@ -31,9 +31,11 @@ class GildedRose {
     private void handleItem(Item item) {
 
         ItemType itemType = ItemType.convertToItemType(item.name);
-        normalizeQuality(item, itemType);
-        if (itemType != ItemType.SULFURAS)
+
+        if (itemType != ItemType.SULFURAS){
+            normalizeQuality(item);
             item.sellIn--;
+        }
 
         int qualityChangeForToday = calculateQualityChangeForToday(item, itemType);
 
@@ -41,15 +43,13 @@ class GildedRose {
             item.quality = applyQualityChangeForToday(item, qualityChangeForToday);
     }
 
-    private static void normalizeQuality(Item item, ItemType itemType) {
-        if(itemType != ItemType.SULFURAS){
-            if(item.quality > MAX_QUALITY_VALUE){
-                item.quality = MAX_QUALITY_VALUE;
-            }
+    private static void normalizeQuality(Item item) {
+        if(item.quality > MAX_QUALITY_VALUE){
+            item.quality = MAX_QUALITY_VALUE;
+        }
 
-            if(item.quality < MIN_QUALITY_VALUE){
-                item.quality = MIN_QUALITY_VALUE;
-            }
+        if(item.quality < MIN_QUALITY_VALUE){
+            item.quality = MIN_QUALITY_VALUE;
         }
     }
 
