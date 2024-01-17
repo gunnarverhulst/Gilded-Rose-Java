@@ -25,22 +25,23 @@ class GildedRose {
                     item.quality++;
 
                     // +1
-                    if (item.sellIn < 11) {
-                        if (isQualityLessThanMax(item.quality)) {
-                            item.quality++;
+                }
+                if (item.sellIn < 6) {
+                    if (isQualityLessThanMax(item.quality)) {
+                        item.quality++;
 
-                            // +2
-                        }
-                    }
-
-                    if (item.sellIn < 6) {
-                        if (isQualityLessThanMax(item.quality)) {
-                            item.quality++;
-
-                            // +3
-                        }
+                        // +3
                     }
                 }
+
+                if (item.sellIn < 11) {
+                    if (isQualityLessThanMax(item.quality)) {
+                        item.quality++;
+
+                        // +2
+                    }
+                }
+
             } else if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
                 if (isQualityMoreThanMin(item.quality)) {
                     item.quality--;
