@@ -22,7 +22,6 @@ class GildedRose {
             else if (itemType == ItemType.BACKSTAGE_PASS) {
 
                 if(isSellInLessThenMin(item.sellIn)){
-                    addedQuality = 0;
                     item.quality = 0;
                 } else if (item.sellIn < 6) {
                     addedQuality = 3;
