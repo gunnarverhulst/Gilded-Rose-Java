@@ -50,7 +50,7 @@ class GildedRose {
                     } else {
                         item.quality = item.quality - item.quality;
                     }
-                } else {
+                } else if (item.name.equals("Aged Brie")) {
                     if (item.quality < 50) {
                         item.quality++;
                     }
