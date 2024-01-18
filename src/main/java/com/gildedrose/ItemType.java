@@ -27,7 +27,7 @@ public enum ItemType {
             case AGED_BRIE -> calculateQualityChangeAgedBrie(item);
             case BACKSTAGE_PASS -> calculateQualityChangeTodayForBackstagePass(item);
             case CONJURED_ITEM -> calculateConjuredItemQualityChangeForToday(item);
-            case null, default -> calculateSulfurasQualityChangeForToday(item);
+            default -> calculateSulfurasQualityChangeForToday(item);
         };
     }
 
