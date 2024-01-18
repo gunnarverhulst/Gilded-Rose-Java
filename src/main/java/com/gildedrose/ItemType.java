@@ -25,7 +25,7 @@ public enum ItemType {
     public static int calculateQualityChangeForToday(Item item, ItemType itemType) {
         int qualityChangeForToday = 0;
         if(itemType == ItemType.AGED_BRIE )
-            qualityChangeForToday = isSellInLessThanZero(item.sellIn) ? 2 : 1;
+            qualityChangeForToday = calculateQualityChangeAgedBrie(item);
         else if (itemType == ItemType.BACKSTAGE_PASS)
             qualityChangeForToday = calculateQualityChangeTodayForBackstagePass(item);
         else if (itemType == ItemType.CONJURED_ITEM)
@@ -33,6 +33,10 @@ public enum ItemType {
         else if (itemType != ItemType.SULFURAS)
             qualityChangeForToday = isSellInLessThanZero(item.sellIn) ? -2 : -1;
         return qualityChangeForToday;
+    }
+
+    private static int calculateQualityChangeAgedBrie(Item item) {
+        return isSellInLessThanZero(item.sellIn) ? 2 : 1;
     }
 
     private static boolean isSellInLessThanZero(int itemSellInValue) {

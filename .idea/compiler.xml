@@ -9,5 +9,11 @@
         <module name="gilded-rose-kata" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="api" target="21" />
+      <module name="app" target="21" />
+      <module name="ui" target="21" />
+      <module name="vocabulary" target="21" />
+    </bytecodeTargetLevel>
   </component>
 </project>

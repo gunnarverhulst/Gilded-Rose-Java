@@ -34,12 +34,11 @@ class GildedRose {
         if (itemType != ItemType.SULFURAS){
             normalizeQuality(item);
             item.sellIn--;
-        }
 
-        int qualityChangeForToday = ItemType.calculateQualityChangeForToday(item, itemType);
+            int qualityChangeForToday = ItemType.calculateQualityChangeForToday(item, itemType);
 
-        if(itemType != ItemType.SULFURAS)
             item.quality = applyQualityChangeForToday(item, qualityChangeForToday);
+        }
     }
 
     private static void normalizeQuality(Item item) {

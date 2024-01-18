@@ -28,14 +28,17 @@ class GildedRoseTest {
 
     @Test
     void handOfSulfurasOneRun(){
-
+        //given
         Item[] items = new Item[] { new Item("Sulfuras, Hand of Ragnaros", 0, 80),
                 new Item("Sulfuras, Hand of Ragnaros", -1, 80) };
         app = new GildedRose(items);
+        //when
         app.updateQuality();
+        //then
         assertEquals("Sulfuras, Hand of Ragnaros", app.getItemName(0));
         assertEquals(0, app.getItemSellIn(0));
         assertEquals(80, app.getItemQuality(0));
+
         assertEquals("Sulfuras, Hand of Ragnaros", app.getItemName(1));
         assertEquals(-1, app.getItemSellIn(1));
         assertEquals(80, app.getItemQuality(1));
